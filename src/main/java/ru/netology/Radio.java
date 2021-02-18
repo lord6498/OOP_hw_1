@@ -2,8 +2,16 @@ package ru.netology;
 
 public class Radio {
 
+    private int channelAmount = 10;
     private int channel;
     private int volume;
+
+    public Radio(int channelAmount) { //конструктор для установки количества каналов
+        this.channelAmount = channelAmount;
+    }
+
+    public Radio () { //обычный конструктор
+    }
 
     public int getChannel() {
         return channel;
@@ -11,13 +19,13 @@ public class Radio {
 
     public void setChannel(int channel) {
 
-        if (channel > 9) {
+        if (channel > channelAmount) {
             this.channel = 0;
         } else {
             this.channel = channel;
         }
         if (channel < 0) {
-            this.channel = 9;
+            this.channel = channelAmount;
         }
 
     } //Управление переключением каналов
@@ -27,7 +35,7 @@ public class Radio {
     }
 
     public void setVolume(int volume) { //Управление переключением громкости
-        if (volume > 10 | volume < 0) {
+        if (volume > 100 || volume < 0) {
             return;
         } else this.volume = volume;
     }
