@@ -30,12 +30,12 @@ class RadioTest {
 
     }
 
-    @Test //Установка нужного канала с пульта
-    public void setNewChannel() {
-        int channel = 2;
+    @ParameterizedTest //Установка нужного канала с пульта
+    @CsvSource ({"2,2","0,-5","10,20"})
+    public void setNewChannel(int expected, int inUse) {
         Radio radio = new Radio(10);
-        radio.setChannel(channel);
-        assertEquals(channel, radio.getChannel());
+        radio.setChannel(inUse);
+        assertEquals(expected, radio.getChannel());
 
     }
 

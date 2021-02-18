@@ -20,12 +20,12 @@ public class Radio {
     public void setChannel(int channel) {
 
         if (channel > channelAmount) {
-            this.channel = 0;
+            this.channel = channelAmount;
         } else {
             this.channel = channel;
         }
         if (channel < 0) {
-            this.channel = channelAmount;
+            this.channel = 0;
         }
 
     } //Управление переключением каналов
@@ -41,11 +41,23 @@ public class Radio {
     }
 
     public void next(int channel) {
-        setChannel(channel + 1);
+        int channelValue = (channel + 1);
+        if (channelValue>channelAmount){
+            setChannel(0);
+        }
+        else {
+            setChannel(channelValue);
+        }
     }
 
     public void prev(int channel) {
-        setChannel(channel - 1);
+        int channelValue = (channel - 1);
+        if (channelValue<0){
+            setChannel(channelAmount);
+        }
+        else {
+            setChannel(channelValue);
+        }
     }
 
     public void volumeUp(int volume) { //Прибавка громкости
