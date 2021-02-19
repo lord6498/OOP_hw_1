@@ -1,23 +1,18 @@
 package ru.netology;
 
+import lombok.*;
+
+@RequiredArgsConstructor
+@NoArgsConstructor
+@Data
 public class Radio {
 
-    private int channelAmount = 10;
-    private int channel;
-    private int volume;
+    @NonNull int channelAmount;
+    int channel;
+    int volume;
 
-    public Radio(int channelAmount) { //конструктор для установки количества каналов
-        this.channelAmount = channelAmount;
-    }
 
-    public Radio () { //обычный конструктор
-    }
-
-    public int getChannel() {
-        return channel;
-    }
-
-    public void setChannel(int channel) {
+    public void setChannelRemote(int channel) {
 
         if (channel > channelAmount) {
             this.channel = channelAmount;
@@ -29,10 +24,6 @@ public class Radio {
         }
 
     } //Управление переключением каналов
-
-    public int getVolume() {
-        return volume;
-    }
 
     public void setVolume(int volume) { //Управление переключением громкости
         if (volume > 100 || volume < 0) {
