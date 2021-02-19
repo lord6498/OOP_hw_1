@@ -1,43 +1,54 @@
 package ru.netology;
 
+import lombok.*;
+
+@RequiredArgsConstructor
+@NoArgsConstructor
+@Data
 public class Radio {
 
-    private int channel;
-    private int volume;
+    @NonNull int channelAmount;
+    int channel;
+    int volume;
 
-    public int getChannel() {
-        return channel;
-    }
 
-    public void setChannel(int channel) {
+    public void setChannelRemote(int channel) {
 
-        if (channel > 9) {
-            this.channel = 0;
+        if (channel > channelAmount) {
+            this.channel = channelAmount;
         } else {
             this.channel = channel;
         }
         if (channel < 0) {
-            this.channel = 9;
+            this.channel = 0;
         }
 
     } //Управление переключением каналов
 
-    public int getVolume() {
-        return volume;
-    }
-
     public void setVolume(int volume) { //Управление переключением громкости
-        if (volume > 10 | volume < 0) {
+        if (volume > 100 || volume < 0) {
             return;
         } else this.volume = volume;
     }
 
     public void next(int channel) {
-        setChannel(channel + 1);
+        int channelValue = (channel + 1);
+        if (channelValue>channelAmount){
+            setChannel(0);
+        }
+        else {
+            setChannel(channelValue);
+        }
     }
 
     public void prev(int channel) {
-        setChannel(channel - 1);
+        int channelValue = (channel - 1);
+        if (channelValue<0){
+            setChannel(channelAmount);
+        }
+        else {
+            setChannel(channelValue);
+        }
     }
 
     public void volumeUp(int volume) { //Прибавка громкости
